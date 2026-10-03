@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintayew Bogale (Aksel) | Vibe Coder & Creator</title>
+    
+    <!-- Google Fonts: Syne for massive display text, Inter for readable body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        black: '#070707',
+                        white: '#f2f2f2',
+                        accent: '#3b82f6', // Subtle blue vibe accent for code elements
+                        gray: {
+                            900: '#121212',
+                            800: '#1e1e1e',
+                            700: '#2d2d2d',
+                            400: '#888888',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Selection */
+        body {
+            background-color: #070707;
+            color: #f2f2f2;
+            overflow-x: hidden;
+        }
+        ::selection {
+            background-color: #f2f2f2;
+            color: #070707;
+        }
+
+        /* Subtle Noise Overlay for premium brutalist feel */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Hover Underline Animation */
+        .hover-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .hover-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Image Reveal & Scale on Hover */
+        .reveal-container {
+            overflow: hidden;
+        }
+        .reveal-img {
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+            filter: grayscale(100%) brightness(0.8);
+        }
+        .group:hover .reveal-img {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Glassmorphism setup */
+        .glass {
+            background: rgba(7, 7, 7, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Text Stroke for large headings */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(242, 242, 242, 0.3);
+            color: transparent;
+            transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+        }
+        .text-stroke:hover {
+            color: #f2f2f2;
+            -webkit-text-stroke: 1px transparent;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased relative">
+    
+    <div class="noise-bg"></div>
+
+    <nav class="fixed w-full top-0 z-40 glass px-6 py-5 flex justify-between items-center transition-all duration-300">
+        <a href="#" class="font-display font-bold text-xl tracking-tighter uppercase flex items-center gap-2">
+            Aksel<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+        </a>
+        <div class="hidden md:flex space-x-8 text-xs font-mono tracking-widest uppercase">
+            <a href="#work" class="hover-underline text-gray-400 hover:text-white transition-colors">01. Graphics</a>
+            <a href="#video" class="hover-underline text-gray-400 hover:text-white transition-colors">02. Video</a>
+            <a href="#photo" class="hover-underline text-gray-400 hover:text-white transition-colors">03. Photo</a>
+            <a href="#contact" class="hover-underline text-gray-400 hover:text-white transition-colors">04. Contact</a>
+        </div>
+        <a href="#contact" class="hidden md:inline-block border border-gray-700 hover:border-white px-5 py-2 text-sm rounded-full transition-all duration-300 hover:bg-white hover:text-black font-medium">
+            Let's Talk
+        </a>
+        <!-- Mobile Menu Icon -->
+        <button class="md:hidden text-white flex flex-col gap-1.5 z-50">
+            <div class="w-6 h-0.5 bg-white"></div>
+            <div class="w-4 h-0.5 bg-white ml-auto"></div>
+        </button>
+    </nav>
+
+    <header class="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-20 relative">
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <!-- Vibe Coder Badge -->
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gray-800 bg-gray-900/50 mb-8 font-mono text-xs text-gray-400">
+                <span class="w-2 h-2 rounded-full bg-accent animate-pulse-slow"></span>
+                <span>system.status = "Vibe Coder Online"</span>
+            </div>
+
+            <h1 class="font-display font-extrabold text-[12vw] md:text-[9rem] leading-[0.9] tracking-tighter uppercase mb-4">
+                Sintayew <br> Bogale
+            </h1>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-12 border-t border-gray-800 pt-8">
+                <div class="max-w-xl">
+                    <p class="text-xl md:text-2xl font-light text-gray-400 leading-relaxed">
+                        Known as <span class="text-white font-medium">Aksel</span>. I am a Graphics Designer, Video editor, Photographer and <span class="font-mono text-accent">vibe coder</span>.
+                    </p>
+                </div>
+                <div class="text-left md:text-right font-mono text-sm text-gray-500 uppercase tracking-widest leading-loose">
+                    <p>Based In</p>
+                    <p class="text-white">Hawassa & Addis Ababa</p>
+                    <p>Ethiopia</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-6 md:left-12 lg:left-24 font-mono text-xs uppercase tracking-widest text-gray-500 flex items-center gap-4">
+            <div class="w-px h-12 bg-gradient-to-b from-gray-500 to-transparent"></div>
+            <span class="rotate-90 origin-left translate-y-6 translate-x-2">Scroll</span>
+        </div>
+    </header>
+
+    <section id="work" class="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24 flex justify-between items-end">
+                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter">Selected<br><span class="text-stroke">Graphics</span></h2>
+                <span class="font-mono text-sm text-gray-500 hidden md:block">[ 01. Visual Identity ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                <!-- Graphic Item 1 -->
+                <a href="#" class="group block">
+                    <div class="reveal-container aspect-square bg-gray-900 mb-6 rounded-sm">
+                        <img src="https://placehold.co/1000x1000/111/fff?text=Minimalist+Line+Art" alt="Minimalist Line Art" class="reveal-img w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-800 pb-4 group-hover:border-white transition-colors">
+                        <h3 class="font-display text-2xl md:text-3xl font-bold uppercase">Minimalist Line Art</h3>
+                        <svg class="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+
+                <!-- Graphic Item 2 -->
+                <a href="#" class="group block md:mt-24">
+                    <div class="reveal-container aspect-square bg-gray-900 mb-6 rounded-sm">
+                        <img src="https://placehold.co/1000x1000/151515/fff?text=Vector+Monograms" alt="Vector Monograms" class="reveal-img w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-800 pb-4 group-hover:border-white transition-colors">
+                        <h3 class="font-display text-2xl md:text-3xl font-bold uppercase">Vector Monograms</h3>
+                        <svg class="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+
+                <!-- Graphic Item 3 -->
+                <a href="#" class="group block">
+                    <div class="reveal-container aspect-square bg-gray-900 mb-6 rounded-sm">
+                        <img src="https://placehold.co/1000x1000/1a1a1a/fff?text=Cut-out+Stickers" alt="Cut-out Stickers" class="reveal-img w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-800 pb-4 group-hover:border-white transition-colors">
+                        <h3 class="font-display text-2xl md:text-3xl font-bold uppercase">Cut-out Stickers</h3>
+                        <svg class="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+
+                <!-- Graphic Item 4 -->
+                <a href="#" class="group block md:mt-24">
+                    <div class="reveal-container aspect-square bg-gray-900 mb-6 rounded-sm">
+                        <img src="https://placehold.co/1000x1000/0f0f0f/fff?text=High-Contrast+Designs" alt="High-Contrast Designs" class="reveal-img w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-800 pb-4 group-hover:border-white transition-colors">
+                        <h3 class="font-display text-2xl md:text-3xl font-bold uppercase">High-Contrast Designs</h3>
+                        <svg class="w-6 h-6 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24 flex justify-between items-end">
+                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter">Motion <br><span class="text-stroke">& Cuts</span></h2>
+                <span class="font-mono text-sm text-gray-400 hidden md:block">[ 02. Video Edits ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- 16:9 Landscape Videos -->
+                <div class="lg:col-span-2 flex flex-col gap-12">
+                    <!-- Video 1 (YouTube/Podcast) -->
+                    <div class="group relative w-full cursor-pointer">
+                        <div class="aspect-video bg-black border border-gray-800 flex items-center justify-center relative overflow-hidden rounded-sm">
+                            <img src="https://placehold.co/1280x720/0a0a0a/fff?text=Podcast+Visualizer" alt="16:9 Video" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                            <!-- Play Button overlay -->
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center relative z-10 group-hover:bg-white transition-colors duration-300">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black ml-1 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-5 flex justify-between items-center">
+                            <h3 class="font-display text-xl font-bold uppercase">Podcast Edit / Visualizer</h3>
+                            <span class="font-mono text-xs text-gray-500">16:9</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 (YouTube Cinematic) -->
+                    <div class="group relative w-full cursor-pointer">
+                        <div class="aspect-video bg-black border border-gray-800 flex items-center justify-center relative overflow-hidden rounded-sm">
+                            <img src="https://placehold.co/1280x720/111111/fff?text=Cinematic+B-Roll" alt="16:9 Video" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center relative z-10 group-hover:bg-white transition-colors duration-300">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black ml-1 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-5 flex justify-between items-center">
+                            <h3 class="font-display text-xl font-bold uppercase">Cinematic Brand Reel</h3>
+                            <span class="font-mono text-xs text-gray-500">16:9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9:16 Vertical Video (TikTok/Reels) -->
+                <div class="flex justify-center lg:justify-end">
+                    <div class="group relative w-full max-w-sm lg:max-w-none cursor-pointer">
+                        <div class="aspect-[9/16] bg-black border border-gray-800 flex items-center justify-center relative overflow-hidden rounded-sm h-full max-h-[800px]">
+                            <img src="https://placehold.co/1080x1920/0f0f0f/fff?text=Social+Media+Reel" alt="9:16 Video" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center relative z-10 group-hover:bg-white transition-colors duration-300">
+                                <svg class="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black ml-1 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <div class="mt-5 flex justify-between items-center">
+                            <h3 class="font-display text-xl font-bold uppercase">Social Media Promo</h3>
+                            <span class="font-mono text-xs text-gray-500">9:16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="photo" class="py-24 md:py-32 px-6 md:px-12 lg:px-24 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 md:mb-24 flex justify-between items-end">
+                <div>
+                    <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter">Event <br><span class="text-stroke">Photography</span></h2>
+                    <p class="font-mono text-gray-400 mt-6 text-sm uppercase tracking-widest">Captured in Hawassa & Addis Ababa</p>
+                </div>
+                <span class="font-mono text-sm text-gray-500 hidden md:block">[ 03. Lens ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photo 1 -->
+                <div class="group overflow-hidden rounded-sm bg-gray-900 aspect-[4/5] relative cursor-crosshair">
+                    <img src="https://placehold.co/800x1000/111/fff?text=Hawassa+Nightlife" alt="Event in Hawassa" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="bg-black/80 backdrop-blur text-white text-xs font-mono uppercase px-3 py-1 border border-gray-700">Hawassa Event</span>
+                    </div>
+                </div>
+                
+                <!-- Photo 2 -->
+                <div class="group overflow-hidden rounded-sm bg-gray-900 aspect-[4/5] relative cursor-crosshair lg:mt-12">
+                    <img src="https://placehold.co/800x1000/181818/fff?text=Addis+Concert" alt="Concert in Addis Ababa" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="bg-black/80 backdrop-blur text-white text-xs font-mono uppercase px-3 py-1 border border-gray-700">Addis Concert</span>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="group overflow-hidden rounded-sm bg-gray-900 aspect-[4/5] relative cursor-crosshair md:col-span-2 lg:col-span-1 lg:mt-24">
+                    <img src="https://placehold.co/800x1000/0a0a0a/fff?text=Corporate+Gala" alt="Corporate Event" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="bg-black/80 backdrop-blur text-white text-xs font-mono uppercase px-3 py-1 border border-gray-700">Corporate Gala</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-black border-t border-gray-800 relative overflow-hidden">
+        <!-- Abstract background blur element -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gray-800 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start gap-16">
+            <div class="max-w-2xl">
+                <h2 class="font-display text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-8">
+                    Let's <br><span class="text-stroke">Create.</span>
+                </h2>
+                <a href="mailto:akselgreen32@gmail.com" class="text-xl md:text-3xl font-light hover-underline text-gray-300 hover:text-white transition-colors break-all">
+                    akselgreen32@gmail.com
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-12 w-full md:w-auto">
+                <div>
+                    <p class="font-mono text-sm text-gray-500 uppercase tracking-widest mb-6">Socials & Code</p>
+                    <ul class="flex flex-col gap-4 font-display text-xl md:text-2xl uppercase">
+                        <li>
+                            <a href="https://t.me/akseling" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-gray-800 pb-2 hover:border-white transition-colors">
+                                <span>Telegram</span>
+                                <svg class="w-5 h-5 transform -rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/akselgreen32-cpu" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-gray-800 pb-2 hover:border-white transition-colors">
+                                <span>GitHub</span>
+                                <svg class="w-5 h-5 transform -rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/sintayew-bogale-6ba783438" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-gray-800 pb-2 hover:border-white transition-colors">
+                                <span>LinkedIn</span>
+                                <svg class="w-5 h-5 transform -rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="font-mono text-xs text-gray-500 uppercase tracking-widest leading-loose border-t border-gray-900 pt-8">
+                    <p>&copy; 2026 Sintayew Bogale (Aksel).</p>
+                    <p>Designed & Coded in Ethiopia.</p>
+                    <p class="text-accent mt-2 animate-pulse">Running: Vibe_Coder_Protocol_v1</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
