@@ -102,7 +102,6 @@
 
     <!-- HERO / ABOUT SECTION -->
     <section id="about" class="pt-32 pb-24 min-h-screen flex items-center relative overflow-hidden">
-        <!-- Floating Background Typography -->
         <div class="absolute top-1/2 left-0 -translate-y-1/2 -z-10 opacity-20 pointer-events-none overflow-hidden w-full animate-float">
             <h1 class="text-[15vw] font-black tracking-tighter text-outline whitespace-nowrap opacity-50">VIBE CODER.</h1>
         </div>
@@ -165,18 +164,31 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Anonymous Prayer Bot (Full Background Logo Style) -->
-                    <a href="https://t.me/anonymousprayerbot" target="_blank" class="interact-card glass-panel aspect-video md:aspect-[4/3] rounded-xl p-8 flex flex-col justify-end group active:scale-95 cursor-pointer relative overflow-hidden">
-                        <!-- Logo as Background -->
-                        <img src="assets/prayer-bot-logo.png" alt="Bot Logo" class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-20 group-hover:opacity-60 group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-700 -z-20">
-                        <!-- Dark gradient overlay for text readability -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent -z-10 transition-colors duration-500"></div>
+                    <!-- Anonymous Prayer Bot (Hover to Reveal Info) -->
+                    <a href="https://t.me/anonymousprayerbot" target="_blank" class="interact-card glass-panel aspect-video md:aspect-[4/3] rounded-xl flex flex-col justify-end group active:scale-95 cursor-pointer relative overflow-hidden">
                         
-                        <h3 class="text-2xl font-bold text-white mb-2 relative z-10">Anonymous Prayer Bot</h3>
-                        <p class="text-zinc-400 text-sm mb-4 relative z-10">A Telegram bot designed to facilitate anonymous prayers and community support.</p>
-                        <div class="font-mono text-xs text-emerald-500 uppercase tracking-wider flex items-center gap-2 relative z-10">
-                            Launch on Telegram
-                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <!-- Center Logo (Unobstructed by default) -->
+                        <img src="assets/prayer-bot-logo.png" alt="Bot Logo" class="absolute inset-0 w-full h-full object-contain opacity-50 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700 -z-20 p-10">
+                        
+                        <!-- Dark gradient overlay (Deepens on hover) -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent group-hover:via-zinc-950/80 transition-all duration-500 -z-10"></div>
+                        
+                        <!-- Text Content Wrapper -->
+                        <div class="p-8 relative z-10 w-full">
+                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:-translate-y-2 transition-transform duration-300 drop-shadow-md">Anonymous Prayer Bot</h3>
+                            
+                            <!-- Hidden Text that Expands on Hover -->
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-out">
+                                <div class="overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                    <p class="text-zinc-400 text-sm mb-4 pt-1">
+                                        A Telegram bot designed to facilitate anonymous prayers and community support. Built to connect users privately, ensuring secure and heartfelt faith-based connections.
+                                    </p>
+                                    <div class="font-mono text-xs text-emerald-500 uppercase tracking-wider flex items-center gap-2 pb-1">
+                                        Launch on Telegram
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </a>
 
