@@ -56,10 +56,12 @@ h1{font-size:clamp(4rem,11vw,8rem);font-weight:700;letter-spacing:-.06em;line-he
 .roles .hl{border-color:#065f46;color:var(--accent-soft);background:rgba(16,185,129,.08);font-weight:700}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn{padding:13px 26px;border-radius:99px;font-weight:700;border:1px solid var(--line);transition:transform .15s,background .2s,border-color .2s}
-.btn:active{transform:scale(.96)}
 .btn.main{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn.main:hover{background:var(--accent-soft);border-color:var(--accent-soft)}
 .btn.ghost:hover{border-color:var(--accent);background:rgba(16,185,129,.08)}
+.btn:active{transform:scale(.92);transition-duration:.05s}
+.icons a:active{transform:scale(.9) translateY(0)!important;transition-duration:.05s}
+.tile:active,button.tile:active{transform:scale(.96);transition-duration:.05s}
 
 /* sections */
 section.block{padding:90px 0 20px}
@@ -77,16 +79,17 @@ h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.04em;line
 @media(max-width:480px){.services{grid-template-columns:1fr}}
 
 /* bot */
-.bot{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:32px;align-items:center;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--panel);transition:border-color .3s}
+.bot{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:32px;align-items:center;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--panel);transition:border-color .3s}
 .bot:hover{border-color:rgba(16,185,129,.5)}
-.bot-logo{aspect-ratio:1;display:grid;place-items:center;background:#0c0c0e;border-radius:14px;padding:28px}
-.bot-logo img{width:100%;height:100%;object-fit:contain}
+.bot-logo{aspect-ratio:4/3;display:block;background:#0c0c0e;border-radius:14px;padding:0;overflow:hidden;border:1px solid var(--line)}
+.bot-logo img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.bot:hover .bot-logo img{transform:scale(1.06)}
 .bot h3{font-size:1.7rem;letter-spacing:-.03em;margin-bottom:10px}
 .bot p{color:var(--mute);max-width:56ch;margin-bottom:14px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .tags span{font-size:.8rem;padding:4px 12px;border:1px solid var(--line);border-radius:99px;color:var(--mute)}
 .soon{margin-top:16px;padding:22px;border:1px dashed var(--line);border-radius:14px;color:var(--dim);text-align:center;font-size:.95rem}
-@media(max-width:700px){.bot{grid-template-columns:1fr;padding:20px}.bot-logo{max-width:200px}}
+@media(max-width:700px){.bot{grid-template-columns:1fr;padding:20px}.bot-logo{max-width:100%;aspect-ratio:16/9}}
 
 /* galleries */
 .grid{display:grid;gap:16px}
@@ -124,10 +127,42 @@ button.tile{padding:0;cursor:zoom-in;color:inherit;font:inherit}
 footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
 .big{font-size:clamp(4rem,16vw,11rem);font-weight:700;letter-spacing:-.07em;line-height:.9;color:#18181b;margin-top:30px;user-select:none}
 
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+html{color-scheme:dark}
+#bar{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#a7f3d0);transform:scaleX(0);transform-origin:left;z-index:60}
+.glow{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(540px circle at var(--mx,50%) var(--my,30%),rgba(16,185,129,.11),transparent 70%)}
+@media(hover:none){.glow{display:none}}
+nav a.on{color:var(--text)}
+.hero-grid>div:last-child>*{opacity:0;animation:rise .9s cubic-bezier(.2,.9,.3,1) forwards}
+.hero-grid>div:last-child>:nth-child(1){animation-delay:.2s}.hero-grid>div:last-child>:nth-child(2){animation-delay:.35s}.hero-grid>div:last-child>:nth-child(3){animation-delay:.5s}.hero-grid>div:last-child>:nth-child(4){animation-delay:.65s}.hero-grid>div:last-child>:nth-child(5){animation-delay:.8s}.hero-grid>div:last-child>:nth-child(6){animation-delay:.95s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.swap{display:inline-block;color:var(--accent-soft);font-weight:500;transition:opacity .3s}
+.portrait img{transition:transform .25s ease-out}
+.portrait::after{content:"";position:absolute;inset:0;border-radius:20px;box-shadow:inset 0 0 0 1px rgba(16,185,129,.18),inset 0 -80px 80px -40px rgba(9,9,11,.9);pointer-events:none}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:26px 0;margin-top:30px}
+.track{display:flex;gap:48px;padding-right:48px;width:max-content;animation:slide 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.track span{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:700;letter-spacing:-.04em;line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35)}
+.track span:nth-of-type(even){color:var(--text);-webkit-text-stroke:0}
+.track i{width:12px;height:12px;border-radius:50%;background:var(--accent);align-self:center;flex:none}
+.services div{transition:background .3s}
+.services h3{transition:color .3s}
+.services div:hover{background:#0c1410}
+.services div:hover h3{color:var(--accent-soft)}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--accent-soft);margin-bottom:12px}
+.tile.empty{background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(255,255,255,.025) 12px 24px)}
+button.btn{font:inherit;font-weight:700;cursor:pointer}
+.big{transition:color .6s}.big:hover{color:#064e3b}
+#up{position:fixed;right:20px;bottom:20px;z-index:55;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(17,17,20,.85);backdrop-filter:blur(8px);color:var(--text);font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,border-color .2s}
+#up.show{opacity:1;pointer-events:auto;transform:none}
+#up:hover{border-color:var(--accent)}
+#toast{position:fixed;left:50%;bottom:28px;z-index:70;transform:translate(-50%,20px);padding:12px 22px;border-radius:99px;background:var(--text);color:var(--bg);font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.hero-grid>div:last-child>*{opacity:1!important}}
 </style>
 </head>
 <body>
+<div id="bar"></div><div class="glow" aria-hidden="true"></div>
 
 <header>
   <div class="wrap">
@@ -150,7 +185,7 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
     <div>
       <h1>aksel<span class="dot">.</span></h1>
       <p class="fullname">Sintayew Bogale</p>
-      <p class="intro">I design, shoot, edit and code. Visual taste meets working software, so the thing you see is also the thing that runs.</p>
+      <p class="intro">I make <span class="swap" id="swap">logos</span> that look right and work right. Visual taste meets working software.</p>
       <p class="where">Based in <b>Hawassa and Addis Ababa, Ethiopia</b></p>
       <div class="roles">
         <span>Graphics designer</span><span>Video editor</span><span>Photographer</span><span class="hl">Vibe coder</span>
@@ -161,6 +196,8 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
     </div>
   </div>
 </section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <!-- WHAT I DO -->
 <section class="block">
@@ -183,6 +220,7 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
     <article class="bot">
       <div class="bot-logo"><img src="assets/prayer-bot-logo.png" alt="Anonymous Prayer Bot logo" loading="lazy"></div>
       <div>
+        <span class="live"><span class="pulse"></span>Live on Telegram</span>
         <h3>Anonymous Prayer Bot</h3>
         <p>A Telegram bot where people send prayer requests without revealing who they are. It works in Amharic and English, so the community can pray for each other privately.</p>
         <div class="tags"><span>Telegram</span><span>Python</span><span>Amharic and English</span><span>Anonymous by design</span></div>
@@ -232,6 +270,7 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
         <li><a href="https://www.linkedin.com/in/sintayew-bogale-6ba783438" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
       </ul>
       <div class="btns">
+        <button class="btn main" id="copy" type="button">Copy email</button>
         <a class="btn ghost" href="assets/aksel-cv.pdf" download="Sintayew_Bogale_CV.pdf">Download CV</a>
       </div>
     </div>
@@ -240,6 +279,8 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
   </div>
 </footer>
 
+<button id="up" type="button" aria-label="Back to top">↑</button>
+<div id="toast" role="status"></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button type="button" aria-label="Close">✕</button>
   <img alt="">
@@ -298,6 +339,56 @@ document.addEventListener("click", e => {
   if (e.target === lb || e.target.closest("#lb button")) lb.classList.remove("open");
 });
 document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+
+/* ---- extras ---- */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s);
+
+// scrolling marquee
+const grp = ["Graphic design", "Video editing", "Photography", "Vibe coding"].map(w => `<span>${w}</span><i></i>`).join("");
+$("#track").innerHTML = grp + grp;
+
+// cursor glow + portrait parallax
+const glow = $(".glow"), pimg = $(".portrait img");
+addEventListener("pointermove", e => {
+  glow.style.setProperty("--mx", e.clientX + "px");
+  glow.style.setProperty("--my", e.clientY + "px");
+  if (reduce) return;
+  const r = pimg.parentElement.getBoundingClientRect();
+  if (e.clientY > r.top - 150 && e.clientY < r.bottom + 150) {
+    const dx = (e.clientX - r.left - r.width / 2) / r.width, dy = (e.clientY - r.top - r.height / 2) / r.height;
+    pimg.style.transform = `translate(${dx * -14}px,${dy * -14}px) scale(1.06)`;
+  }
+});
+
+// rotating words in the intro
+const sw = $("#swap"), words = ["logos", "event photos", "video edits", "Telegram bots"]; let k = 0;
+if (!reduce) setInterval(() => {
+  sw.style.opacity = 0;
+  setTimeout(() => { sw.textContent = words[k = (k + 1) % words.length]; sw.style.opacity = 1; }, 300);
+}, 2600);
+
+// progress bar, active nav link, back-to-top
+const bar = $("#bar"), up = $("#up"), links = [...document.querySelectorAll("nav a")];
+const secs = ["about", "work", "contact"].map(id => document.getElementById(id));
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  up.classList.toggle("show", scrollY > 700);
+  let cur = 0;
+  secs.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight * .4) cur = i; });
+  links.forEach((a, i) => a.classList.toggle("on", i === cur));
+}
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+up.onclick = () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+
+// copy email
+const toast = $("#toast");
+$("#copy").onclick = async () => {
+  try { await navigator.clipboard.writeText("akselgreen32@gmail.com"); toast.textContent = "Email copied"; }
+  catch { toast.textContent = "akselgreen32@gmail.com"; }
+  toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2200);
+};
 </script>
 </body>
 </html>
