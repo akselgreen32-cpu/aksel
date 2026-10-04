@@ -38,21 +38,10 @@
             animation: slideInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Vibe Background: Dark gradient + tiny line sketches */
-        .vibe-bg {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 50% 50%, #18181b 0%, #09090b 100%);
-            background-size: 30px 30px, 30px 30px, 100% 100%;
-            background-position: center center;
-        }
-
         /* Seamless Edge Blending */
-        .seamless-blend {
+        .seamless-profile-blend {
             -webkit-mask-image: radial-gradient(circle at 50% 40%, black 35%, transparent 75%);
             mask-image: radial-gradient(circle at 50% 40%, black 35%, transparent 75%);
-            filter: grayscale(100%) contrast(1.1) brightness(0.9);
             mix-blend-mode: luminosity;
         }
     </style>
@@ -74,7 +63,6 @@
 
     <!-- HERO / ABOUT SECTION -->
     <section id="about" class="pt-32 pb-24 min-h-screen flex items-center relative overflow-hidden">
-        <!-- Background Typography Decoration -->
         <div class="absolute top-1/2 left-0 -translate-y-1/2 -z-10 opacity-20 pointer-events-none overflow-hidden w-full">
             <h1 class="text-[15vw] font-black tracking-tighter text-outline whitespace-nowrap opacity-50">VIBE CODER.</h1>
         </div>
@@ -82,9 +70,10 @@
         <div class="max-w-7xl mx-auto px-6 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 
-                <!-- Profile Image (Seamlessly Blended into Line Sketches) -->
-                <div class="relative rounded-2xl overflow-hidden vibe-bg aspect-[4/5] lg:aspect-square group animate-slide-in flex items-center justify-center border border-zinc-800/50">
-                    <img src="assets/profile-sketched.jpg" alt="aksel. - Sintayew Bogale" class="w-full h-full object-cover seamless-blend opacity-90 group-hover:opacity-100 transition-opacity duration-700">
+                <!-- Profile Image -->
+                <div class="relative rounded-2xl overflow-hidden glass-panel aspect-[4/5] lg:aspect-square group animate-slide-in flex items-center justify-center border border-zinc-800/50">
+                    <!-- Ensure your chosen photo is uploaded to assets/ and named exactly this: -->
+                    <img src="assets/profile-sketched-blended.png" alt="aksel. - Sintayew Bogale" class="w-full h-full object-cover seamless-profile-blend opacity-90 group-hover:opacity-100 transition-opacity duration-700">
                     
                     <div class="absolute bottom-6 left-6 z-10">
                         <p class="text-emerald-400 font-mono text-sm uppercase tracking-widest mb-1">Status</p>
@@ -122,6 +111,48 @@
     <!-- WORK SECTION -->
     <section id="work" class="py-24 relative z-10 bg-zinc-950">
         <div class="max-w-7xl mx-auto px-6 space-y-32">
+
+            <!-- NEW: Vibe Coding / Bots -->
+            <div class="space-y-12">
+                <div class="border-b border-zinc-800 pb-6 flex justify-between items-end">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">Code<span class="text-emerald-500">.</span></h2>
+                    <p class="hidden md:block font-mono text-zinc-500 text-sm">// VIBE CODING & BOTS</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Anonymous Prayer Bot -->
+                    <a href="https://t.me/anonymousprayerbot" target="_blank" class="glass-panel p-6 rounded-xl group hover:border-emerald-500/50 transition-colors flex flex-col cursor-pointer relative overflow-hidden">
+                        <div class="absolute inset-0 bg-zinc-900 -z-10 group-hover:bg-zinc-800 transition-colors"></div>
+                        <!-- Logo Space -->
+                        <div class="w-16 h-16 rounded-xl bg-zinc-950 mb-6 overflow-hidden border border-zinc-800 flex items-center justify-center">
+                            <img src="assets/prayer-bot-logo.png" alt="Bot Logo" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Anonymous Prayer Bot</h3>
+                        <p class="text-zinc-400 text-sm flex-grow mb-8">A Telegram bot designed to facilitate anonymous prayers and community support seamlessly.</p>
+                        <div class="font-mono text-xs text-emerald-500 uppercase tracking-wider flex items-center gap-2">
+                            Launch on Telegram
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                    </a>
+
+                    <!-- Empty Shelf 1 -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-center items-center border border-dashed border-zinc-800/50 bg-zinc-900/20 opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        </div>
+                        <span class="text-zinc-500 font-mono text-xs uppercase tracking-widest">[ INCOMING PROJECT ]</span>
+                    </div>
+
+                    <!-- Empty Shelf 2 -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col justify-center items-center border border-dashed border-zinc-800/50 bg-zinc-900/20 opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        </div>
+                        <span class="text-zinc-500 font-mono text-xs uppercase tracking-widest">[ INCOMING PROJECT ]</span>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- Graphics & Design -->
             <div class="space-y-12">
@@ -217,7 +248,6 @@
                     <a href="mailto:akselgreen32@gmail.com" class="px-8 py-4 bg-white text-zinc-950 font-bold rounded-full hover:bg-emerald-400 transition-colors">Email Me</a>
                     <a href="Https://t.me/akseling" target="_blank" class="px-8 py-4 glass-panel text-white font-bold rounded-full hover:bg-white/10 transition-colors">Telegram</a>
                     
-                    <!-- NEW DOWNLOAD CV BUTTON -->
                     <a href="assets/aksel-cv.pdf" download="Sintayew_Bogale_CV.pdf" target="_blank" class="px-8 py-4 glass-panel border border-emerald-500/30 text-emerald-400 font-bold rounded-full hover:bg-emerald-500/10 transition-colors flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Download CV
