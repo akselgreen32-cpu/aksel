@@ -129,6 +129,8 @@ footer{padding:50px 0 40px;text-align:center;color:var(--dim);font-size:.9rem}
 
 html{color-scheme:dark}
 .btn.tg{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:19px 42px;font-size:1.15rem;background:var(--accent);border-color:var(--accent);color:var(--bg);box-shadow:0 0 44px rgba(16,185,129,.35);margin-bottom:34px;transition:transform .15s,background .2s,box-shadow .3s}
+.btn.call{display:inline-flex;align-items:center;gap:10px}
+.btn.call svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn.tg svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn.tg:hover{background:var(--accent-soft);border-color:var(--accent-soft);box-shadow:0 0 64px rgba(16,185,129,.5)}
 .contact>p.alt{color:var(--dim);font-size:.9rem;margin:0 auto 16px}
@@ -137,7 +139,7 @@ html{color-scheme:dark}
 .talk.show{opacity:1;pointer-events:auto;transform:none}
 .talk:active{transform:scale(.94)}
 @media(min-width:701px){.talk{display:none}}
-@media(max-width:700px){#toast{bottom:84px}.btn.tg{width:100%;padding:18px 24px}}
+@media(max-width:700px){.btn.tg{width:100%;padding:18px 24px}}
 #bar{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#a7f3d0);transform:scaleX(0);transform-origin:left;z-index:60}
 .glow{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(540px circle at var(--mx,50%) var(--my,30%),rgba(16,185,129,.11),transparent 70%)}
 @media(hover:none){.glow{display:none}}
@@ -166,8 +168,6 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
 #up{position:fixed;right:20px;bottom:20px;z-index:55;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(17,17,20,.85);backdrop-filter:blur(8px);color:var(--text);font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,border-color .2s}
 #up.show{opacity:1;pointer-events:auto;transform:none}
 #up:hover{border-color:var(--accent)}
-#toast{position:fixed;left:50%;bottom:28px;z-index:70;transform:translate(-50%,20px);padding:12px 22px;border-radius:99px;background:var(--text);color:var(--bg);font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
-#toast.show{opacity:1;transform:translate(-50%,0)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.hero-grid>div:last-child>*{opacity:1!important}}
 </style>
 </head>
@@ -281,7 +281,7 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
         <li><a href="https://www.linkedin.com/in/sintayew-bogale-6ba783438" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
       </ul>
       <div class="btns">
-        <button class="btn ghost" id="copy" type="button">Copy email</button>
+        <a class="btn ghost call" id="call" href="#contact" data-t="dGVsOisyNTE5ODQ1MzE1Nzk="><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call me</a>
         <a class="btn ghost" href="assets/aksel-cv.pdf" download="Sintayew_Bogale_CV.pdf">Download CV</a>
       </div>
     </div>
@@ -292,7 +292,6 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
 
 <a id="talk" class="talk" href="#contact">Let's talk</a>
 <button id="up" type="button" aria-label="Back to top">↑</button>
-<div id="toast" role="status"></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button type="button" aria-label="Close">✕</button>
   <img alt="">
@@ -395,13 +394,9 @@ function onScroll() {
 addEventListener("scroll", onScroll, { passive: true }); onScroll();
 up.onclick = () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 
-// copy email
-const toast = $("#toast");
-$("#copy").onclick = async () => {
-  try { await navigator.clipboard.writeText("akselgreen32@gmail.com"); toast.textContent = "Email copied"; }
-  catch { toast.textContent = "akselgreen32@gmail.com"; }
-  toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2200);
-};
+// phone link is assembled in the browser so the number never appears in the page text
+const callBtn = $("#call");
+if (callBtn) callBtn.href = atob(callBtn.dataset.t);
 </script>
 </body>
 </html>
