@@ -1,391 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#030303]">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aksel. | Creative Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Syne for massive display headers, Inter for clean body text, Space Mono for coder accents -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-    
+    <title>aksel. | Sintayew Bogale</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
-                    },
-                    colors: {
-                        base: '#030303',
-                        surface: '#0a0a0a',
-                        border: 'rgba(255, 255, 255, 0.08)',
-                        textMuted: '#888888',
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Base aesthetics */
         body {
-            background-color: #030303;
-            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #09090b; /* zinc-950 */
+            color: #f4f4f5; /* zinc-100 */
             overflow-x: hidden;
         }
-        
-        /* High contrast selection */
-        ::selection {
-            background-color: #ffffff;
-            color: #030303;
-        }
-
-        /* Smooth scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030303; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555; 
-        }
-
-        /* Glassmorphism utility */
-        .glass-nav {
-            background: rgba(3, 3, 3, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
         .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        /* Custom Hover Underlines */
-        .link-hover {
-            position: relative;
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
         }
-        .link-hover::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -4px;
-            left: 0;
-            background-color: currentColor;
-            transform-origin: bottom right;
-            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-        .link-hover:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        /* Cinematic Image Reveal */
-        .img-wrap {
-            overflow: hidden;
-            position: relative;
-        }
-        .img-reveal {
-            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
-            filter: grayscale(100%) contrast(1.2);
-            transform: scale(1.02);
-        }
-        .group:hover .img-reveal {
-            transform: scale(1.08);
-            filter: grayscale(0%) contrast(1);
-        }
-
-        /* Ambient background glow */
-        .ambient-glow {
-            position: absolute;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(3,3,3,0) 70%);
-            top: -20vw;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: -1;
+        ::selection {
+            background-color: #10b981; /* emerald-500 */
+            color: #09090b;
         }
     </style>
 </head>
-<body class="font-sans antialiased text-white selection:bg-white selection:text-base">
+<body class="antialiased selection:bg-emerald-500 selection:text-zinc-950">
 
-    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
-        <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
-            <a href="#" class="font-display font-bold text-2xl tracking-tighter lowercase">
-                aksel.
-            </a>
-            <div class="hidden md:flex space-x-10 text-xs font-mono uppercase tracking-[0.2em] text-textMuted">
-                <a href="#graphics" class="link-hover hover:text-white transition-colors duration-300">Graphics</a>
-                <a href="#photography" class="link-hover hover:text-white transition-colors duration-300">Photography</a>
-                <a href="#video" class="link-hover hover:text-white transition-colors duration-300">Video</a>
-                <a href="#contact" class="link-hover hover:text-white transition-colors duration-300 text-white">Contact</a>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full top-0 z-50 glass-panel border-b-0 border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tighter hover:text-emerald-400 transition-colors">aksel.</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-zinc-400 hover:text-white transition-colors">ABOUT</a>
+                <a href="#work" class="text-zinc-400 hover:text-white transition-colors">WORK</a>
+                <a href="#contact" class="text-zinc-400 hover:text-white transition-colors">CONTACT</a>
             </div>
-            <!-- Mobile menu trigger -->
-            <button class="md:hidden flex flex-col gap-1.5 p-2">
-                <span class="w-6 h-px bg-white block"></span>
-                <span class="w-4 h-px bg-white block ml-auto"></span>
-            </button>
+            <a href="#contact" class="md:hidden text-sm font-bold text-emerald-400">CONNECT</a>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 md:px-12 max-w-[1400px] mx-auto">
-        <div class="ambient-glow"></div>
-        
-        <div class="w-full relative z-10 flex flex-col items-start mt-auto mb-auto">
-            <!-- Vibe coder badge -->
-            <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-3 mb-10">
-                <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-                <span class="font-mono text-xs uppercase tracking-widest text-textMuted mt-0.5">System Online</span>
-            </div>
-
-            <!-- Massive Brand Title -->
-            <h1 class="font-display font-bold text-[18vw] md:text-[14rem] lg:text-[16rem] leading-[0.8] tracking-tighter lowercase -ml-1 md:-ml-3 text-white">
-                aksel.
-            </h1>
-            
-            <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-16 md:mt-24">
-                <div class="max-w-2xl">
-                    <p class="text-xl md:text-3xl font-light text-textMuted leading-relaxed">
-                        Graphics Designer, Video editor, Photographer and <span class="text-white font-mono italic text-lg md:text-2xl ml-1">vibe coder.</span>
-                    </p>
-                </div>
-                <div class="font-mono text-xs text-textMuted uppercase tracking-[0.2em] leading-loose text-left md:text-right border-l md:border-l-0 md:border-r border-border pl-4 md:pl-0 md:pr-4">
-                    <p class="text-white mb-1">Location</p>
-                    <p>Addis Ababa</p>
-                    <p>& Hawassa, Ethiopia</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="graphics" class="py-24 md:py-40 px-6 md:px-12 max-w-[1400px] mx-auto border-t border-border">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-6">
-            <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tighter lowercase">Graphics.</h2>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-textMuted pb-2">[ 01. Visuals ]</p>
+    <!-- HERO / ABOUT SECTION -->
+    <section id="about" class="pt-32 pb-24 min-h-screen flex items-center relative">
+        <!-- Background Typography Decoration -->
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 -z-10 opacity-20 pointer-events-none overflow-hidden w-full">
+            <h1 class="text-[15vw] font-black tracking-tighter text-outline whitespace-nowrap opacity-50">VIBE CODER.</h1>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            <!-- Item 1 -->
-            <a href="#" class="group block relative">
-                <div class="img-wrap aspect-square bg-surface rounded-sm">
-                    <img src="https://placehold.co/1200x1200/0a0a0a/ffffff?text=Minimalist+Line+Art" alt="Minimalist Line Art" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 flex justify-between items-end bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="font-display text-2xl md:text-3xl font-bold">Minimalist Line Art</h3>
-                    <div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center transform group-hover:bg-white group-hover:text-black transition-all duration-300">
-                        <svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Profile Image -->
+                <div class="relative rounded-2xl overflow-hidden glass-panel aspect-[4/5] lg:aspect-square group">
+                    <img src="assets/profile-blended.jpg" alt="aksel. - Sintayew Bogale" class="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <p class="text-emerald-400 font-mono text-sm uppercase tracking-widest mb-1">Status</p>
+                        <p class="text-white font-bold tracking-wide">CREATING</p>
                     </div>
                 </div>
-            </a>
 
-            <!-- Item 2 -->
-            <a href="#" class="group block relative md:mt-24">
-                <div class="img-wrap aspect-square bg-surface rounded-sm">
-                    <img src="https://placehold.co/1200x1200/121212/ffffff?text=Vector+Monograms" alt="Vector Monograms" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 flex justify-between items-end bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="font-display text-2xl md:text-3xl font-bold">Vector Monograms</h3>
-                    <div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center transform group-hover:bg-white group-hover:text-black transition-all duration-300">
-                        <svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <!-- Profile Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-2">aksel<span class="text-emerald-500">.</span></h1>
+                        <p class="text-2xl md:text-3xl font-light text-zinc-400">Sintayew Bogale</p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl space-y-4">
+                        <p class="text-lg text-zinc-300 leading-relaxed">
+                            Based in <span class="text-white font-semibold">Hawassa & Addis Ababa, Ethiopia</span>. 
+                        </p>
+                        <p class="text-lg text-zinc-400 leading-relaxed">
+                            I am a multidisciplinary creative bridging the gap between visual aesthetics and digital architecture. 
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-4">
+                            <span class="px-4 py-2 rounded-full border border-zinc-800 text-sm font-medium text-zinc-300 bg-zinc-900/50">Graphics Designer</span>
+                            <span class="px-4 py-2 rounded-full border border-zinc-800 text-sm font-medium text-zinc-300 bg-zinc-900/50">Video editor</span>
+                            <span class="px-4 py-2 rounded-full border border-zinc-800 text-sm font-medium text-zinc-300 bg-zinc-900/50">Photographer</span>
+                            <span class="px-4 py-2 rounded-full border border-emerald-900 text-sm font-bold text-emerald-400 bg-emerald-950/30">Vibe coder</span>
+                        </div>
                     </div>
                 </div>
-            </a>
 
-            <!-- Item 3 -->
-            <a href="#" class="group block relative">
-                <div class="img-wrap aspect-square bg-surface rounded-sm">
-                    <img src="https://placehold.co/1200x1200/181818/ffffff?text=Cut-out+Stickers" alt="Cut-out Stickers" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 flex justify-between items-end bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="font-display text-2xl md:text-3xl font-bold">Cut-out Stickers</h3>
-                    <div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center transform group-hover:bg-white group-hover:text-black transition-all duration-300">
-                        <svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Item 4 -->
-            <a href="#" class="group block relative md:mt-24">
-                <div class="img-wrap aspect-square bg-surface rounded-sm">
-                    <img src="https://placehold.co/1200x1200/0d0d0d/ffffff?text=High-Contrast+Designs" alt="High-Contrast Designs" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 flex justify-between items-end bg-gradient-to-t from-black/80 to-transparent">
-                    <h3 class="font-display text-2xl md:text-3xl font-bold">High-Contrast Designs</h3>
-                    <div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center transform group-hover:bg-white group-hover:text-black transition-all duration-300">
-                        <svg class="w-4 h-4 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section id="photography" class="py-24 md:py-40 px-6 md:px-12 max-w-[1400px] mx-auto border-t border-border">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-6">
-            <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tighter lowercase">Photography.</h2>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-textMuted pb-2">[ 02. Lens ]</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
-            <!-- Main wide shot -->
-            <div class="md:col-span-12 group cursor-crosshair">
-                <div class="img-wrap aspect-[16/9] md:aspect-[21/9] bg-surface rounded-sm w-full">
-                    <img src="https://placehold.co/2000x850/0f0f0f/ffffff?text=Event+Photography+-+Addis+Ababa" alt="Addis Ababa Event" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="mt-4 flex justify-between items-center text-sm font-mono text-textMuted uppercase tracking-widest">
-                    <span>Addis Ababa, ET</span>
-                    <span>2026</span>
-                </div>
-            </div>
-
-            <!-- Supporting shots -->
-            <div class="md:col-span-6 group cursor-crosshair">
-                <div class="img-wrap aspect-[4/5] bg-surface rounded-sm w-full">
-                    <img src="https://placehold.co/1000x1250/141414/ffffff?text=Hawassa+Festival" alt="Hawassa Festival" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="mt-4 flex justify-between items-center text-sm font-mono text-textMuted uppercase tracking-widest">
-                    <span>Hawassa, ET</span>
-                    <span>Festival</span>
-                </div>
-            </div>
-            <div class="md:col-span-6 group cursor-crosshair">
-                <div class="img-wrap aspect-[4/5] bg-surface rounded-sm w-full">
-                    <img src="https://placehold.co/1000x1250/0a0a0a/ffffff?text=Corporate+Gala" alt="Corporate Gala" class="img-reveal w-full h-full object-cover">
-                </div>
-                <div class="mt-4 flex justify-between items-center text-sm font-mono text-textMuted uppercase tracking-widest">
-                    <span>Addis Ababa, ET</span>
-                    <span>Corporate</span>
-                </div>
             </div>
         </div>
     </section>
 
-    <section id="video" class="py-24 md:py-40 px-6 md:px-12 max-w-[1400px] mx-auto border-t border-border">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-6">
-            <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tighter lowercase">Video.</h2>
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-textMuted pb-2">[ 03. Motion ]</p>
-        </div>
+    <!-- WORK SECTION -->
+    <section id="work" class="py-24 relative z-10 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 space-y-32">
 
-        <div class="flex flex-col lg:flex-row gap-6 md:gap-10">
-            <!-- 16:9 Landscape Layouts (Takes up 2/3 space on large screens) -->
-            <div class="w-full lg:w-2/3 flex flex-col gap-6 md:gap-10">
-                <div class="group relative w-full cursor-pointer">
-                    <div class="img-wrap aspect-video bg-surface rounded-sm border border-border">
-                        <img src="https://placehold.co/1920x1080/080808/ffffff?text=16:9+Landscape+Edit" alt="Landscape Video" class="img-reveal w-full h-full object-cover opacity-80 group-hover:opacity-100">
-                        <!-- Play Button UI -->
-                        <div class="absolute inset-0 flex items-center justify-center z-10">
-                            <div class="w-20 h-20 rounded-full glass-panel flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                                <svg class="w-8 h-8 text-white group-hover:text-black ml-1 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4 font-mono text-xs text-textMuted flex justify-between uppercase tracking-widest">
-                        <span>Cinematic Edit</span>
-                        <span>16:9</span>
-                    </div>
+            <!-- Graphics & Design -->
+            <div class="space-y-12">
+                <div class="border-b border-zinc-800 pb-6 flex justify-between items-end">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">Graphics<span class="text-emerald-500">.</span></h2>
+                    <p class="hidden md:block font-mono text-zinc-500 text-sm">// IDENTITY & VISUALS</p>
                 </div>
-
-                <div class="group relative w-full cursor-pointer">
-                    <div class="img-wrap aspect-video bg-surface rounded-sm border border-border">
-                        <img src="https://placehold.co/1920x1080/111111/ffffff?text=Commercial+Project" alt="Commercial Video" class="img-reveal w-full h-full object-cover opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 flex items-center justify-center z-10">
-                            <div class="w-20 h-20 rounded-full glass-panel flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                                <svg class="w-8 h-8 text-white group-hover:text-black ml-1 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-panel aspect-video rounded-xl p-8 flex flex-col justify-end group hover:border-emerald-500/50 transition-colors cursor-pointer relative overflow-hidden">
+                        <div class="absolute inset-0 bg-zinc-900 -z-10 group-hover:bg-zinc-800 transition-colors"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Minimalist Line Art</h3>
+                        <p class="text-zinc-400 text-sm">Clean, single-weight vector illustrations.</p>
                     </div>
-                    <div class="mt-4 font-mono text-xs text-textMuted flex justify-between uppercase tracking-widest">
-                        <span>Brand Promo</span>
-                        <span>16:9</span>
+                    <div class="glass-panel aspect-video rounded-xl p-8 flex flex-col justify-end group hover:border-emerald-500/50 transition-colors cursor-pointer relative overflow-hidden">
+                        <div class="absolute inset-0 bg-zinc-900 -z-10 group-hover:bg-zinc-800 transition-colors"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Vector Monograms</h3>
+                        <p class="text-zinc-400 text-sm">Bold brand identity and typographic marks.</p>
+                    </div>
+                    <div class="glass-panel aspect-video rounded-xl p-8 flex flex-col justify-end group hover:border-emerald-500/50 transition-colors cursor-pointer relative overflow-hidden">
+                        <div class="absolute inset-0 bg-zinc-900 -z-10 group-hover:bg-zinc-800 transition-colors"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Cut-out Stickers</h3>
+                        <p class="text-zinc-400 text-sm">Print-ready, high-contrast digital assets.</p>
+                    </div>
+                    <div class="glass-panel aspect-video rounded-xl p-8 flex flex-col justify-end group hover:border-emerald-500/50 transition-colors cursor-pointer relative overflow-hidden">
+                        <div class="absolute inset-0 bg-zinc-900 -z-10 group-hover:bg-zinc-800 transition-colors"></div>
+                        <h3 class="text-2xl font-bold text-white mb-2">High-Contrast Layouts</h3>
+                        <p class="text-zinc-400 text-sm">Brutalist posters and UI concepts.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 9:16 Vertical Layout (Takes up 1/3 space on large screens) -->
-            <div class="w-full lg:w-1/3 flex">
-                <div class="group relative w-full h-full cursor-pointer">
-                    <!-- Added min-h block for mobile so it doesn't collapse awkwardly -->
-                    <div class="img-wrap aspect-[9/16] lg:h-full lg:aspect-auto bg-surface rounded-sm border border-border">
-                        <img src="https://placehold.co/1080x1920/050505/ffffff?text=9:16+Vertical+Reel" alt="Vertical Video" class="img-reveal w-full h-full object-cover opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 flex items-center justify-center z-10">
-                            <div class="w-20 h-20 rounded-full glass-panel flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-500">
-                                <svg class="w-8 h-8 text-white group-hover:text-black ml-1 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
+            <!-- Event Photography -->
+            <div class="space-y-12">
+                <div class="border-b border-zinc-800 pb-6 flex justify-between items-end">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">Photography<span class="text-emerald-500">.</span></h2>
+                    <p class="hidden md:block font-mono text-zinc-500 text-sm">// HAWASSA & ADDIS ABABA</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel aspect-[3/4] rounded-xl flex items-center justify-center bg-zinc-900/50 group hover:bg-zinc-800 transition-colors">
+                        <span class="text-zinc-600 font-mono text-sm group-hover:text-emerald-400 transition-colors">[ Image Placeholder 1 ]</span>
                     </div>
-                    <div class="mt-4 font-mono text-xs text-textMuted flex justify-between uppercase tracking-widest">
-                        <span>Social Media Reel</span>
-                        <span>9:16</span>
+                    <div class="glass-panel aspect-[3/4] rounded-xl flex items-center justify-center bg-zinc-900/50 group hover:bg-zinc-800 transition-colors md:-translate-y-8">
+                        <span class="text-zinc-600 font-mono text-sm group-hover:text-emerald-400 transition-colors">[ Image Placeholder 2 ]</span>
+                    </div>
+                    <div class="glass-panel aspect-[3/4] rounded-xl flex items-center justify-center bg-zinc-900/50 group hover:bg-zinc-800 transition-colors">
+                        <span class="text-zinc-600 font-mono text-sm group-hover:text-emerald-400 transition-colors">[ Image Placeholder 3 ]</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Video Edits -->
+            <div class="space-y-12">
+                <div class="border-b border-zinc-800 pb-6 flex justify-between items-end">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight">Motion<span class="text-emerald-500">.</span></h2>
+                    <p class="hidden md:block font-mono text-zinc-500 text-sm">// VIDEO EDITS & TIMELINES</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Vertical Video (TikTok/Reels) -->
+                    <div class="lg:col-span-1 glass-panel aspect-[9/16] rounded-xl flex items-center justify-center bg-zinc-900 relative overflow-hidden group">
+                        <div class="absolute inset-0 border-2 border-dashed border-zinc-800 rounded-xl m-4 flex flex-col items-center justify-center space-y-4 group-hover:border-emerald-500/50 transition-colors">
+                            <svg class="w-8 h-8 text-zinc-600 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-zinc-500 font-mono text-xs text-center px-4">VERTICAL FORMAT<br>(9:16)</span>
+                        </div>
+                    </div>
+                    <!-- Landscape Videos (YouTube/Cinema) -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <div class="glass-panel aspect-video w-full rounded-xl flex items-center justify-center bg-zinc-900 relative overflow-hidden group">
+                            <div class="absolute inset-0 border-2 border-dashed border-zinc-800 rounded-xl m-4 flex flex-col items-center justify-center space-y-4 group-hover:border-emerald-500/50 transition-colors">
+                                <svg class="w-10 h-10 text-zinc-600 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-zinc-500 font-mono text-xs">LANDSCAPE FORMAT (16:9)</span>
+                            </div>
+                        </div>
+                        <div class="glass-panel aspect-video w-full rounded-xl flex items-center justify-center bg-zinc-900 relative overflow-hidden group">
+                            <div class="absolute inset-0 border-2 border-dashed border-zinc-800 rounded-xl m-4 flex flex-col items-center justify-center space-y-4 group-hover:border-emerald-500/50 transition-colors">
+                                <svg class="w-10 h-10 text-zinc-600 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-zinc-500 font-mono text-xs">LANDSCAPE FORMAT (16:9)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <footer id="contact" class="border-t border-border bg-[#020202] pt-24 md:pt-40 pb-12 px-6 md:px-12 relative overflow-hidden">
-        <div class="max-w-[1400px] mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start gap-16">
-            
-            <div class="w-full md:w-1/2">
-                <h2 class="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-white leading-none">
-                    Let's <br> Connect.
-                </h2>
-                <a href="mailto:akselgreen32@gmail.com" class="inline-block text-xl md:text-2xl font-light text-textMuted link-hover hover:text-white transition-colors duration-400 break-all">
-                    akselgreen32@gmail.com
-                </a>
-            </div>
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact" class="pt-32 pb-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-panel rounded-3xl p-12 md:p-24 text-center space-y-12 relative z-10 border-zinc-800">
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter">Let's build<br><span class="text-emerald-500">something.</span></h2>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:akselgreen32@gmail.com" class="px-8 py-4 bg-white text-zinc-950 font-bold rounded-full hover:bg-emerald-400 transition-colors">Email Me</a>
+                    <a href="Https://t.me/akseling" target="_blank" class="px-8 py-4 glass-panel text-white font-bold rounded-full hover:bg-white/10 transition-colors">Telegram</a>
+                </div>
 
-            <div class="w-full md:w-1/2 flex flex-col md:items-end justify-between h-full">
-                <div class="w-full md:w-auto max-w-sm">
-                    <ul class="flex flex-col gap-6 font-display text-2xl md:text-3xl lowercase">
-                        <li>
-                            <a href="https://t.me/akseling" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-4 hover:border-white transition-colors duration-400">
-                                <span>telegram.</span>
-                                <svg class="w-6 h-6 text-textMuted group-hover:text-white transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/akselgreen32-cpu" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-4 hover:border-white transition-colors duration-400">
-                                <span>github.</span>
-                                <svg class="w-6 h-6 text-textMuted group-hover:text-white transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/sintayew-bogale-6ba783438" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-border pb-4 hover:border-white transition-colors duration-400">
-                                <span>linkedin.</span>
-                                <svg class="w-6 h-6 text-textMuted group-hover:text-white transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="flex justify-center space-x-8 pt-12 border-t border-zinc-800/50">
+                    <a href="https://github.com/akselgreen32-cpu" target="_blank" class="text-zinc-500 hover:text-white transition-colors font-mono text-sm uppercase tracking-wider">GitHub</a>
+                    <a href="Https://www.linkedin.com/in/sintayew-bogale-6ba783438?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="text-zinc-500 hover:text-white transition-colors font-mono text-sm uppercase tracking-wider">LinkedIn</a>
                 </div>
             </div>
-        </div>
 
-        <div class="max-w-[1400px] mx-auto mt-24 md:mt-40 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-mono uppercase tracking-[0.2em] text-textMuted border-t border-border pt-8">
-            <p>&copy; 2026 aksel. All rights reserved.</p>
-            <a href="#" class="font-display font-bold text-2xl tracking-tighter lowercase text-white link-hover">
-                aksel.
-            </a>
-            <p>Ethiopia</p>
+            <div class="mt-24 text-center">
+                <p class="text-zinc-600 font-mono text-sm uppercase tracking-widest">© 2026 Sintayew Bogale.</p>
+                <p class="text-zinc-800 font-black text-6xl md:text-[10vw] leading-none mt-8 -mb-12 opacity-50 tracking-tighter select-none">aksel.</p>
+            </div>
         </div>
     </footer>
 
