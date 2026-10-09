@@ -168,6 +168,8 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
 #up{position:fixed;right:20px;bottom:20px;z-index:55;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(17,17,20,.85);backdrop-filter:blur(8px);color:var(--text);font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,border-color .2s}
 #up.show{opacity:1;pointer-events:auto;transform:none}
 #up:hover{border-color:var(--accent)}
+#toast{position:fixed;left:50%;bottom:28px;z-index:70;transform:translate(-50%,20px);padding:12px 22px;border-radius:99px;background:var(--text);color:var(--bg);font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.hero-grid>div:last-child>*{opacity:1!important}}
 </style>
 </head>
@@ -227,19 +229,37 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
 <section class="block">
   <div class="wrap">
     <div class="sec-head"><h2>Projects<span class="dot">.</span></h2></div>
-    <article class="bot">
-      <div class="bot-logo"><img src="assets/prayer-bot-logo.png" alt="Anonymous Prayer Bot logo" loading="lazy"></div>
-      <div>
-        <span class="live"><span class="pulse"></span>Live on Telegram</span>
-        <h3>Anonymous Prayer Bot</h3>
-        <p>A Telegram bot where people send prayer requests without revealing who they are. It works in Amharic and English, so the community can pray for each other privately.</p>
-        <div class="tags"><span>Telegram</span><span>Python</span><span>Amharic and English</span><span>Anonymous by design</span></div>
-        <div class="btns">
-          <a class="btn main" href="https://t.me/anonymousprayerbot" target="_blank" rel="noopener">Open on Telegram</a>
+    
+    <div class="grid">
+      <!-- BOT PROJECT -->
+      <article class="bot">
+        <div class="bot-logo"><img src="assets/prayer-bot-logo.png" alt="Anonymous Prayer Bot logo" loading="lazy"></div>
+        <div>
+          <span class="live"><span class="pulse"></span>Live on Telegram</span>
+          <h3>Anonymous Prayer Bot</h3>
+          <p>A Telegram bot where people send prayer requests without revealing who they are. It works in Amharic and English, so the community can pray for each other privately.</p>
+          <div class="tags"><span>Telegram</span><span>Python</span><span>Amharic and English</span><span>Anonymous by design</span></div>
+          <div class="btns">
+            <a class="btn main" href="https://t.me/anonymousprayerbot" target="_blank" rel="noopener">Open on Telegram</a>
+          </div>
         </div>
-      </div>
-    </article>
-    <div class="soon">More projects are on the way.</div>
+      </article>
+
+      <!-- FELLOWSHIP PROJECT -->
+      <article class="bot">
+        <div class="bot-logo"><img src="assets/hu-fellowship-logo.png" alt="HU Referral Fellowship logo" loading="lazy"></div>
+        <div>
+          <span class="live"><span class="pulse"></span>Live Website</span>
+          <h3>HU Referral Fellowship</h3>
+          <p>A fast, responsive web platform designed to serve as the digital home for the Hawassa University Referral Fellowship. Built to organize resources, connect members, and provide a seamless hub for the community.</p>
+          <div class="tags"><span>Web Design</span><span>Frontend</span><span>Community Platform</span></div>
+          <div class="btns">
+            <a class="btn main" href="https://hu-referral-fellowship.pages.dev/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
   </div>
 </section>
 
@@ -292,6 +312,7 @@ button.btn{font:inherit;font-weight:700;cursor:pointer}
 
 <a id="talk" class="talk" href="#contact">Let's talk</a>
 <button id="up" type="button" aria-label="Back to top">↑</button>
+<div id="toast" role="status"></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button type="button" aria-label="Close">✕</button>
   <img alt="">
@@ -316,7 +337,7 @@ const videos = [
 ];
 
 const esc = s => String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const caption = i => i.title ? `<div class="cap">${esc(i.title)}${i.note ? `<small>${esc(i.note)}</small>` : ""}</div>` : "";
+const caption = i => i.title ? `<div class="cap">${esc(i.title)}${i.note ? `<small>\${esc(i.note)}</small>` : ""}</div>` : "";
 
 function fill(id, items, build, emptyShape, emptyText) {
   const box = document.getElementById(id);
@@ -339,7 +360,7 @@ fill("photos", photos, i =>
 
 fill("videos", videos, i =>
   `<div class="tile ${i.shape || "l"}">
-     <video src="${esc(i.src)}" ${i.poster ? `poster="${esc(i.poster)}"` : ""} controls playsinline preload="metadata" aria-label="${esc(i.title)}"></video>${caption(i)}</div>`,
+     <video src="${esc(i.src)}" ${i.poster ? `poster="\${esc(i.poster)}"` : ""} controls playsinline preload="metadata" aria-label="${esc(i.title)}"></video>${caption(i)}</div>`,
   "l", "Video edits are being added.");
 
 /* lightbox */
@@ -353,11 +374,11 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList
 
 /* ---- extras ---- */
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const $ = s => document.querySelector(s);
+const \$ = s => document.querySelector(s);
 
 // scrolling marquee
 const grp = ["Graphic design", "Video editing", "Photography", "Vibe coding"].map(w => `<span>${w}</span><i></i>`).join("");
-$("#track").innerHTML = grp + grp;
+\$("#track").innerHTML = grp + grp;
 
 // cursor glow + portrait parallax
 const glow = $(".glow"), pimg = $(".portrait img");
@@ -373,14 +394,14 @@ addEventListener("pointermove", e => {
 });
 
 // rotating words in the intro
-const sw = $("#swap"), words = ["logos", "event photos", "video edits", "Telegram bots"]; let k = 0;
+const sw = \$("#swap"), words = ["logos", "event photos", "video edits", "Telegram bots"]; let k = 0;
 if (!reduce) setInterval(() => {
   sw.style.opacity = 0;
   setTimeout(() => { sw.textContent = words[k = (k + 1) % words.length]; sw.style.opacity = 1; }, 300);
 }, 2600);
 
 // progress bar, active nav link, back-to-top
-const bar = $("#bar"), up = $("#up"), talk = $("#talk"), links = [...document.querySelectorAll("nav a")];
+const bar = \$("#bar"), up = $("#up"), talk = $("#talk"), links = [...document.querySelectorAll("nav a")];
 const secs = ["about", "work", "contact"].map(id => document.getElementById(id));
 function onScroll() {
   const max = document.documentElement.scrollHeight - innerHeight;
@@ -394,8 +415,16 @@ function onScroll() {
 addEventListener("scroll", onScroll, { passive: true }); onScroll();
 up.onclick = () => scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 
+// copy email
+const toast = \$("#toast");
+\$("#copy").onclick = async () => {
+  try { await navigator.clipboard.writeText("akselgreen32@gmail.com"); toast.textContent = "Email copied"; }
+  catch { toast.textContent = "akselgreen32@gmail.com"; }
+  toast.classList.add("show"); setTimeout(() => toast.classList.remove("show"), 2200);
+};
+
 // phone link is assembled in the browser so the number never appears in the page text
-const callBtn = $("#call");
+const callBtn = \$("#call");
 if (callBtn) callBtn.href = atob(callBtn.dataset.t);
 </script>
 </body>
